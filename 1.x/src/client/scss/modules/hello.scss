@@ -1,0 +1,24 @@
+.hello {
+	font-size: 14px;
+	background: #fff;
+	color: #222;
+	padding: 50px;
+	font-size: 18px;
+	font-family: $sansSerif;
+}
+
+.hello--magical {
+	background: #B6B6B6;
+	color: #181515;
+}
+
+// ---- Components ------------------------------------------------------------
+
+.hello-Thing {
+	font-family: serif;
+	font-size: 115%;
+}
+
+.hello-Disclaimer {
+	font-weight: bold;
+}

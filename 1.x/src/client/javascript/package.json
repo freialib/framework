@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "react": "^0.11.1",
+    "oboe": "^1.15.1",
+    "lodash": "^2.4.1",
+    "bluebird": "^2.2.2"
+  }
+}

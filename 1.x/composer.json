@@ -1,0 +1,33 @@
+{
+	"name": "Awesome",
+	"version": "1.0.0",
+
+	"authors": [
+		{
+			"name": "Awesome",
+			"role": "Developer"
+		}
+	],
+
+	"autoload": {
+		"freia": {
+			"load": [
+				"src/server/system",
+				"src/server/theme",
+				"packagist"
+			]
+		}
+	},
+
+	"config": {
+		"preferred-install": "dist",
+		"vendor-dir": "packagist",
+		"bin-dir": "packagist/.bin",
+		"cache-files-ttl": 0
+	},
+
+	"require": {
+		"php": ">=5.4.10",
+		"freialib/bundle": "~1.0.0"
+	}
+}

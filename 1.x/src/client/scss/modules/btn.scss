@@ -1,0 +1,19 @@
+.btn {
+	display: inline-block;
+	color: rgb(12, 12, 12);
+	background: rgb(138, 138, 138);
+	text-decoration: none;
+	padding: 5px 10px;
+	// animation
+	transition: background ease .7s;
+
+	&:hover {
+		background: #1B354E;
+		color: #E9E9E9;
+	}
+}
+
+.btn--wide {
+	padding: 10px 24px;
+	font-size: 24px;
+}

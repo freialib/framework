@@ -1,3 +1,1 @@
-function sayHello() {
-	return 'hello';
-}
+require('./webapp/main').instance(document.getElementById('jsx-mountpoint'));

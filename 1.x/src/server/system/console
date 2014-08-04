@@ -1,0 +1,46 @@
+#!/usr/bin/env php
+<?php namespace app\main;
+
+	// php settings
+	date_default_timezone_set('Europe/London');
+
+	// server control root
+	$rootpath = realpath(__DIR__);
+
+	// project path
+	$prjpath = realpath(__DIR__.'/../../..');
+
+	// logs path
+	$logspath = realpath("$prjpath/files/logs");
+
+	// fatalerror logging
+	require "$rootpath/linker/fatalerrors.php";
+	fatalerrors($logspath);
+
+	// init autoloader
+	$serverpath = realpath("$rootpath/..");
+	require "$serverpath/autoloader.php";
+	$autoloader = autoloader($prjpath);
+
+	// did we succesfully init the autoloader?
+	if ($autoloader === null) {
+		echo " The project dependencies don't appear to be installed.\n";
+		exit(500);
+	}
+
+	// cache path
+	$cachepath = realpath("$prjpath/files/cache");
+
+	// package information
+	$pkg = json_decode(file_get_contents("$prjpath/composer.json"), true);
+
+	// init main context
+	require "$rootpath/linker/context.php";
+	$context = context($autoloader, $pkg, $rootpath, $logspath, $cachepath);
+
+	// create console handler
+	$console = \hlin\Console::instance($context);
+
+	// invoke main
+	$commands = $context->confs->read('freia/commands');
+	return $console->main($commands);

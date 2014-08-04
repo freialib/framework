@@ -1,0 +1,13 @@
+.window {
+	box-sizing: border-box;
+	padding: 50px;
+	background: #eee;
+	min-height: 100%;
+}
+
+// ---- Components ------------------------------------------------------------
+
+.window-Content {
+	padding-bottom: 10px;
+	border-bottom: 1px dashed #999;
+}

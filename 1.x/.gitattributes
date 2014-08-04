@@ -113,3 +113,4 @@ LICENSE        text eol=lf
 Gemfile        text eol=lf
 Gemfile.lock   text eol=lf
 
+composer.lock  text eol=lf

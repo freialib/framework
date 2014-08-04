@@ -1,7 +1,9 @@
 var gulp   = require('gulp');
 var concat = require('gulp-concat');
 var order  = require('gulp-order');
+
 var merge  = require('event-stream').merge;
+var util   = require('util');
 
 var supported_browser = ['last 2 version', 'ie 8', 'ie 9'];
 
@@ -31,13 +33,41 @@ gulp.task('css', function () {
 // -------
 
 var nodeify  = require('gulp-browserify');
+var reactify = require('reactify');
 var polyfill = require('gulp-autopolyfiller');
 var uglify   = require('gulp-uglify');
+var glob     = require("glob")
+
+var module_mapping = [
+	{
+		cwd: 'src/client/javascript/webapp/lib',
+		dest: 'lib',
+		src: '**/*.js'
+	},
+	{
+		cwd: 'src/client/javascript/webapp/system',
+		dest: 'system',
+		src: '**/*.js'
+	},
+];
 
 gulp.task('js', function () {
 
 	var mainjs = gulp.src('./src/client/javascript/main.js')
-		.pipe(nodeify())
+		.pipe(nodeify({
+			transform: ['reactify']
+		}).on('prebundle', function (bundler) {
+			for (var i in module_mapping) {
+				var conf = module_mapping[i];
+				var files = glob.sync(conf['src'], {'cwd': conf['cwd']});
+				for (var j in files) {
+					var file = __dirname + '/' + conf['cwd'] + '/' + files[j];
+					bundler.require(file, {
+						expose: conf['dest'] + '/' + (files[j].replace(/\.jsx?$/, ''))
+					});
+				}
+			}
+		}))
 		.pipe(concat('main.js'));
 
 	var polyfills = mainjs
@@ -74,8 +104,19 @@ gulp.task('confs', function () {
 // ------------
 
 gulp.task('entry-points', function () {
-	gulp.src('./src/theme/public/**/*')
+	gulp.src('./src/server/theme/public/**/*')
 		.pipe(gulp.dest('./stage/'));
+});
+
+// Watch
+// -----
+
+gulp.task('watch', function() {
+	gulp.watch('./src/client/scss/**/*', ['css']);
+	gulp.watch('./src/client/javascript/**/*', ['js']);
+	gulp.watch('./src/client/images/**/*', ['assets']);
+	gulp.watch('./src/client/confs/**/*', ['confs']);
+	gulp.watch('./src/server/theme/public/**/*', ['entry-points']);
 });
 
 // Main
