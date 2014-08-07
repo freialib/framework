@@ -5,10 +5,10 @@
 	date_default_timezone_set('Europe/London');
 
 	// server control root
-	$rootpath = realpath(__DIR__);
+	$rootpath = realpath(__DIR__.'/system');
 
 	// project path
-	$prjpath = realpath(__DIR__.'/../../..');
+	$prjpath = realpath(__DIR__.'/../..');
 
 	// logs path
 	$logspath = realpath("$prjpath/files/logs");
