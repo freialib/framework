@@ -8,11 +8,6 @@
 trait ModelTrait {
 
 	/**
-	 * @var array
-	 */
-	protected $attrs = [];
-
-	/**
 	 * @return array
 	 */
 	function toArray() {

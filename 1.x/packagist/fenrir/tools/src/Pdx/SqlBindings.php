@@ -33,10 +33,17 @@ class SqlBindingsPdx implements PdxMethodSignature {
 					++$idx;
 
 					if ( ! isset($constraint[3])) {
+						$idkey = '_id';
+					}
+					else { // constraint key set
+						$idkey = $constraint[3];
+					}
+
+					if ( ! isset($constraint[4])) {
 						$constraint_key = $key;
 					}
 					else { // constraint key set
-						$constraint_key = $constraint[3];
+						$constraint_key = $constraint[4];
 					}
 
 					// keys must be unique over the whole database
@@ -46,7 +53,7 @@ class SqlBindingsPdx implements PdxMethodSignature {
 						"
 							ADD CONSTRAINT `$constraint_key`
 							   FOREIGN KEY (`$key`)
-								REFERENCES `{$constraint[0]}` (`id`)
+								REFERENCES `{$constraint[0]}` (`$idkey`)
 								 ON DELETE {$constraint[1]}
 								 ON UPDATE {$constraint[2]}
 						";

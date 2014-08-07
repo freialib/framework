@@ -163,7 +163,7 @@ class MakeCommand implements \hlin\archetype\Command {
 			return null;
 		}
 
-		$phpnamespace = \hlin\PHP::pnn($namespace);
+		$phpnamespace = ltrim(\hlin\PHP::pnn($namespace), '\\');
 
 		if (($firstptr = stripos($namespace, '.')) != false) {
 			$group = substr($namespace, 0, $firstptr);
@@ -198,7 +198,7 @@ class MakeCommand implements \hlin\archetype\Command {
 			}
 			$classfile .= " {\n";
 			if ( ! empty($ci['use'])) {
-				$classfile .= "\n\tuse".implode(";\n\tuse ", array_map(function ($i) { return \hlin\PHP::pnn($i); }, $ci['use'])).";\n";
+				$classfile .= "\n\tuse ".implode(";\n\tuse ", array_map(function ($i) { return \hlin\PHP::pnn($i); }, $ci['use'])).";\n";
 				$traits = implode(', ', $ci['use']);
 				if (count($ci['use']) == 1) {
 					$doc_parts[] = (count($doc_parts) == 0 ? ' that ' : ' ')."uses the trait $traits";

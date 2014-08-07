@@ -25,7 +25,7 @@ class PHP {
 	 * @return string from unn back to php
 	 */
 	static function pnn($symbol) {
-		return str_replace('.', '\\', $symbol);
+		return '\\'.str_replace('.', '\\', $symbol);
 	}
 
 } # class

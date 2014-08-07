@@ -70,7 +70,7 @@ class CmdhelpCommand implements \hlin\archetype\Command {
 
 			$this->cli->printf("\n USAGE EXAMPLES\n\n");
 			$this->cli->printf($parser->consoleExamples($cmd, $command));
-			$this->cli->printf("\n");
+			$this->cli->printf("\n\n");
 
 			return 0;
 		}
