@@ -19,8 +19,12 @@ interface Logger {
 	 * the type name will be created as default behavior.
 	 *
 	 * Types should not use illegal file characters.
+	 *
+	 * If explicit is specified then the type is considered the only place the
+	 * logging should occur on, so things like summary logs will get ignored
+	 * on output.
 	 */
-	function log($message, $type = null);
+	function log($message, $type = null, $explicit = false);
 	# type files should not be re-located into year/month structures
 
 	/**

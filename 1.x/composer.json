@@ -9,8 +9,9 @@
 		}
 	],
 
-	"autoload": {
+	"extra": {
 		"freia": {
+			"cache.dir": "files/cache",
 			"load": [
 				"src/server/system",
 				"src/server/theme",
@@ -28,6 +29,6 @@
 
 	"require": {
 		"php": ">=5.4.10",
-		"freialib/bundle": "v1.0.4"
+		"freialib/bundle": "1.*"
 	}
 }

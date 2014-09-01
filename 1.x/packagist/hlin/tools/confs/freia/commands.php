@@ -78,10 +78,21 @@
 		'flagparser' => 'hlin.NoopFlagparser',
 		'summary' => 'track logs summary',
 		'desc' =>
-			"This command is just a shorthand for tail -f -n0 app/logs/summary.log\n".
+			"This command is just a shorthand for tail -f -n0 path/to/logs/summary.log\n".
 			"If summary log doesn't exist it will be created.",
 		'examples' => [
 			"" => "show logs summary",
+		],
+		'help' => false # = command does not have any parameters
+	],
+
+	'module-stack' => [
+		'topic' => 'application',
+		'command' => 'hlin.ModuleStackCommand',
+		'flagparser' => 'hlin.NoopFlagparser',
+		'summary' => 'show enabled modules in loading order',
+		'examples' => [
+			"" => "show modules stack order; from highest priority to lowest",
 		],
 		'help' => false # = command does not have any parameters
 	],

@@ -25,7 +25,7 @@ function main($domain) {
 
 	// init autoloader
 	require "$contextpath/autoloader.php";
-	$autoloader = autoloader($domain['prjpath']);
+	$autoloader = autoloader($domain['prjpath'], $domain['environment'] == 'development' ? true : false);
 	if ($autoloader === null) {
 		error_log("[Critical-Error] Failed loading autoloader.");
 		return 500;

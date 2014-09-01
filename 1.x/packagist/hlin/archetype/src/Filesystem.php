@@ -163,4 +163,11 @@ interface Filesystem {
 	 */
 	function basename($path, $suffix = null);
 
+	/**
+	 * @codeCoverageIgnore
+	 * @see http://www.php.net/manual/en/function.move-uploaded-file.php
+	 * @return boolean
+	 */
+	function move_uploaded_file($filename, $destination);
+
 } # interface

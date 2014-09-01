@@ -3,7 +3,7 @@
 /**
  * @return \hlin\archetype\Autoloader or null on failure
  */
-function autoloader($prjpath) {
+function autoloader($prjpath, $debugMode = false) {
 
 	$composerjson = "$prjpath/composer.json";
 
@@ -11,14 +11,14 @@ function autoloader($prjpath) {
 		return null;
 	}
 
-	$env = json_decode(file_get_contents($composerjson), true);
-	$paths = $env['autoload']['freia'];
+	$pkg = json_decode(file_get_contents($composerjson), true);
+	$env = $pkg['extra']['freia'];
 
 	// include composer autoloader
-	require "$prjpath/{$env['config']['vendor-dir']}/autoload.php";
+	require "$prjpath/{$pkg['config']['vendor-dir']}/autoload.php";
 
 	// initialize
-	$autoloader = \freia\autoloader\SymbolLoader::instance($prjpath, $paths);
+	$autoloader = \freia\autoloader\SymbolLoader::instance($prjpath, $env, $debugMode);
 
 	// add as main autoloader
 	if ( ! $autoloader->register(true)) {

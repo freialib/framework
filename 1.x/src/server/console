@@ -20,7 +20,7 @@
 	// init autoloader
 	$serverpath = realpath("$rootpath/..");
 	require "$serverpath/autoloader.php";
-	$autoloader = autoloader($prjpath);
+	$autoloader = autoloader($prjpath, true);
 
 	// did we succesfully init the autoloader?
 	if ($autoloader === null) {

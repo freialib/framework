@@ -24,22 +24,25 @@ class Request implements \hlin\tools\RequestSignature {
 	}
 
 	/**
-	 * Given a set of acceptable formats the system tries to retrieve the
-	 * data format specified and return it in the specified output format.
+	 * Given a set of acceptable formats the system tries to retrieve the data
+	 * format specified and return it in the specified output format. If there
+	 * is no input the method will return null.
 	 *
 	 * Supported formats:
 	 *  - post
 	 *  - json
+	 *  - query (alias: get)
+	 *  - files
 	 *
 	 * Supported output formats:
 	 *  - array
 	 *
-	 * @return mixed input
+	 * @return mixed|null input
 	 */
 	function input(array $formats, $output = 'array') {
 
 		if (in_array('post', $formats)) {
-			$post = $this->context->web->postData();
+			$post = $this->context->web->requestPostData();
 			if ( ! empty($post)) {
 				if ($output == 'array') {
 					return $post;
@@ -56,7 +59,26 @@ class Request implements \hlin\tools\RequestSignature {
 			}
 		}
 
-		throw new Panic('Failed to resolve input.');
+		if (in_array('query', $formats) || in_array('get', $formats)) {
+			$get = $this->context->web->requestQueryData();
+			if ( ! empty($get)) {
+				if ($output == 'array') {
+					return $get;
+				}
+			}
+		}
+
+		if (in_array('files', $formats)) {
+			$files = $this->context->web->requestFiles();
+			if ( ! empty($files)) {
+				if ($output == 'array') {
+					return $files;
+				}
+			}
+		}
+
+		// failed to resolve input
+		return null;
 	}
 
 } # class

@@ -25,10 +25,12 @@ class Web implements \hlin\archetype\Web {
 	}
 
 	/**
+	 * Unlike PHP's built-in $_SERVER variable this ignores the QUERY_STRING
+	 *
 	 * @return string
 	 */
 	function requestUri() {
-		return $_SERVER['REQUEST_URI'];
+		return urldecode(preg_replace('#\?.*$#', '', $_SERVER['REQUEST_URI']));
 	}
 
 	/**
@@ -41,8 +43,22 @@ class Web implements \hlin\archetype\Web {
 	/**
 	 * @return array
 	 */
-	function postData() {
+	function requestPostData() {
 		return $_POST;
+	}
+
+	/**
+	 * @return array
+	 */
+	function requestQueryData() {
+		return $_GET;
+	}
+
+	/**
+	 * @return array
+	 */
+	function requestFiles() {
+		return $_FILES;
 	}
 
 	/**

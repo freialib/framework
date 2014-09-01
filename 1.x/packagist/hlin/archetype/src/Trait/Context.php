@@ -174,7 +174,7 @@ trait ContextTrait {
 	 * @var array
 	 */
 	protected $versions = [
-		'freia Library' => [ 'version' => '1.0.0', 'author' => 'freia Team' ],
+		'freia Library' => [ 'version' => 'Edition 1', 'author' => 'freia Team' ],
 	];
 
 	/**

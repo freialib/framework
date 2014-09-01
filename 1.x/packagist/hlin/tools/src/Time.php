@@ -21,13 +21,7 @@ class Time {
 			$now = new \DateTime('now', $tz);
 		}
 
-		$mins = $now->getOffset() / 60;
-		$sgn = ($mins < 0 ? -1 : 1);
-		$mins = abs($mins);
-		$hrs = floor($mins / 60);
-		$mins -= $hrs * 60;
-
-		return sprintf('%+d:%02d', $hrs * $sgn, $mins);
+		return $now->format('P');
 	}
 
 } # class

@@ -5,7 +5,7 @@ use \hlin\archetype\Autoloader;
 /**
  * @return \hlin\archetype\Context
  */
-function context(Autoloader $autoloader, array $env, $rootpath, $logspath, $cachepath) {
+function context(Autoloader $autoloader, array $pkg, $rootpath, $logspath, $cachepath) {
 
 	if ($logspath === false || empty($logspath)) {
 		log_error('[ERROR] Bad logging path! No file logging will be available.');
@@ -32,9 +32,9 @@ function context(Autoloader $autoloader, array $env, $rootpath, $logspath, $cach
 
 	// versions
 
-	$mainauthor = $env['authors'][0]['name'];
-	$context->addversion($env['name'], $env['version'], $mainauthor);
-	$context->setmainversion($env['name']);
+	$mainauthor = $pkg['authors'][0]['name'];
+	$context->addversion($pkg['name'], $pkg['version'], $mainauthor);
+	$context->setmainversion($pkg['name']);
 	$context->addversion('PHP', phpversion(), 'The PHP Group');
 
 	// special handlers

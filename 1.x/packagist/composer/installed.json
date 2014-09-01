@@ -1,29 +1,30 @@
 [
     {
         "name": "ran/tools",
-        "version": "v1.0.0",
-        "version_normalized": "1.0.0.0",
+        "version": "v1.0.1",
+        "version_normalized": "1.0.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/freialib/ran.tools.git",
-            "reference": "55cc1779631c3a701c7a40356f067d6a93458cd7"
+            "reference": "fb211f8f144f422b648acabc593adb988ea79d8c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/freialib/ran.tools/zipball/55cc1779631c3a701c7a40356f067d6a93458cd7",
-            "reference": "55cc1779631c3a701c7a40356f067d6a93458cd7",
+            "url": "https://api.github.com/repos/freialib/ran.tools/zipball/fb211f8f144f422b648acabc593adb988ea79d8c",
+            "reference": "fb211f8f144f422b648acabc593adb988ea79d8c",
             "shasum": ""
         },
         "require": {
             "php": ">=5.4.10"
         },
-        "time": "2014-08-01 19:00:14",
+        "time": "2014-08-31 23:51:56",
         "type": "freia-module",
         "installation-source": "dist",
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "BSD-2"
+            "BSD-2-Clause"
         ],
+        "description": "freia module",
         "homepage": "http://freialib.github.io/",
         "keywords": [
             "freialib"
@@ -31,59 +32,77 @@
     },
     {
         "name": "fenrir/tools",
-        "version": "v1.1.0",
-        "version_normalized": "1.1.0.0",
+        "version": "v1.1.3",
+        "version_normalized": "1.1.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/freialib/fenrir.tools.git",
-            "reference": "a5da8f5d0eda6f3ed04f7922f6f1c6f323ff155d"
+            "reference": "848b819858c45ad91e6da90b80bf8a4377cc2640"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/freialib/fenrir.tools/zipball/a5da8f5d0eda6f3ed04f7922f6f1c6f323ff155d",
-            "reference": "a5da8f5d0eda6f3ed04f7922f6f1c6f323ff155d",
+            "url": "https://api.github.com/repos/freialib/fenrir.tools/zipball/848b819858c45ad91e6da90b80bf8a4377cc2640",
+            "reference": "848b819858c45ad91e6da90b80bf8a4377cc2640",
             "shasum": ""
         },
         "require": {
             "php": ">=5.4.10"
         },
-        "time": "2014-08-07 22:25:22",
+        "time": "2014-08-31 23:46:13",
         "type": "freia-module",
         "installation-source": "dist",
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "BSD-2"
+            "BSD-2-Clause"
         ],
+        "description": "freia module",
         "homepage": "http://freialib.github.io/",
         "keywords": [
             "freialib"
         ]
     },
     {
-        "name": "fenrir/system",
-        "version": "v1.0.0",
-        "version_normalized": "1.0.0.0",
+        "name": "hlin/profiler",
+        "version": "v1.0.1",
+        "version_normalized": "1.0.1.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/freialib/fenrir.system.git",
-            "reference": "aba02c25fe4158e7237c15e7a15fde93575a7f5b"
+            "url": "https://github.com/freialib/hlin.profiler.git",
+            "reference": "194bea58aa232b051fc67213f142187c48d669c2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/freialib/fenrir.system/zipball/aba02c25fe4158e7237c15e7a15fde93575a7f5b",
-            "reference": "aba02c25fe4158e7237c15e7a15fde93575a7f5b",
+            "url": "https://api.github.com/repos/freialib/hlin.profiler/zipball/194bea58aa232b051fc67213f142187c48d669c2",
+            "reference": "194bea58aa232b051fc67213f142187c48d669c2",
             "shasum": ""
         },
         "require": {
             "php": ">=5.4.10"
         },
-        "time": "2014-08-04 19:22:26",
+        "time": "2014-08-31 23:39:43",
         "type": "freia-module",
+        "extra": {
+            "freia": {
+                "rules": {
+                    "identity": [
+                        "debug",
+                        "profiler"
+                    ],
+                    "matches-before": [
+                        "hlin.security",
+                        "hlin.archetype",
+                        "hlin.attribute",
+                        "hlin.tools"
+                    ]
+                }
+            }
+        },
         "installation-source": "dist",
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "BSD-2"
+            "BSD-2-Clause"
         ],
+        "description": "freia module",
         "homepage": "http://freialib.github.io/",
         "keywords": [
             "freialib"
@@ -91,29 +110,30 @@
     },
     {
         "name": "hlin/tools",
-        "version": "v1.0.1",
-        "version_normalized": "1.0.1.0",
+        "version": "v1.3.1",
+        "version_normalized": "1.3.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/freialib/hlin.tools.git",
-            "reference": "4072a25445d6004dc66c56cbfe58e9d00552e7a6"
+            "reference": "ca44f2a8add138749561f45b4cafcb2b7853e440"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/freialib/hlin.tools/zipball/4072a25445d6004dc66c56cbfe58e9d00552e7a6",
-            "reference": "4072a25445d6004dc66c56cbfe58e9d00552e7a6",
+            "url": "https://api.github.com/repos/freialib/hlin.tools/zipball/ca44f2a8add138749561f45b4cafcb2b7853e440",
+            "reference": "ca44f2a8add138749561f45b4cafcb2b7853e440",
             "shasum": ""
         },
         "require": {
             "php": ">=5.4.10"
         },
-        "time": "2014-08-07 22:30:19",
+        "time": "2014-08-31 23:50:30",
         "type": "freia-module",
         "installation-source": "dist",
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "BSD-2"
+            "BSD-2-Clause"
         ],
+        "description": "freia module",
         "homepage": "http://freialib.github.io/",
         "keywords": [
             "freialib"
@@ -121,29 +141,30 @@
     },
     {
         "name": "hlin/security",
-        "version": "v1.0.0",
-        "version_normalized": "1.0.0.0",
+        "version": "v1.0.3",
+        "version_normalized": "1.0.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/freialib/hlin.security.git",
-            "reference": "3bd9b95a40de334ab162212a93333e071eae36b5"
+            "reference": "dfe478068517908bcbd1cc6cacfe6655d04ac56b"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/freialib/hlin.security/zipball/3bd9b95a40de334ab162212a93333e071eae36b5",
-            "reference": "3bd9b95a40de334ab162212a93333e071eae36b5",
+            "url": "https://api.github.com/repos/freialib/hlin.security/zipball/dfe478068517908bcbd1cc6cacfe6655d04ac56b",
+            "reference": "dfe478068517908bcbd1cc6cacfe6655d04ac56b",
             "shasum": ""
         },
         "require": {
             "php": ">=5.4.10"
         },
-        "time": "2014-08-01 18:55:59",
+        "time": "2014-08-31 23:49:28",
         "type": "freia-module",
         "installation-source": "dist",
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "BSD-2"
+            "BSD-2-Clause"
         ],
+        "description": "freia module",
         "homepage": "http://freialib.github.io/",
         "keywords": [
             "freialib"
@@ -151,29 +172,30 @@
     },
     {
         "name": "hlin/attribute",
-        "version": "v1.0.0",
-        "version_normalized": "1.0.0.0",
+        "version": "v1.0.1",
+        "version_normalized": "1.0.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/freialib/hlin.attribute.git",
-            "reference": "138fa8e281cb55898cba1f71e718d6300de3a185"
+            "reference": "54f59f4e6514d48d417afb4547b5201eb1b16554"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/freialib/hlin.attribute/zipball/138fa8e281cb55898cba1f71e718d6300de3a185",
-            "reference": "138fa8e281cb55898cba1f71e718d6300de3a185",
+            "url": "https://api.github.com/repos/freialib/hlin.attribute/zipball/54f59f4e6514d48d417afb4547b5201eb1b16554",
+            "reference": "54f59f4e6514d48d417afb4547b5201eb1b16554",
             "shasum": ""
         },
         "require": {
             "php": ">=5.4.10"
         },
-        "time": "2014-08-01 18:54:30",
+        "time": "2014-08-31 23:48:21",
         "type": "freia-module",
         "installation-source": "dist",
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "BSD-2"
+            "BSD-2-Clause"
         ],
+        "description": "freia module",
         "homepage": "http://freialib.github.io/",
         "keywords": [
             "freialib"
@@ -181,29 +203,30 @@
     },
     {
         "name": "hlin/archetype",
-        "version": "v1.0.1",
-        "version_normalized": "1.0.1.0",
+        "version": "v1.2.1",
+        "version_normalized": "1.2.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/freialib/hlin.archetype.git",
-            "reference": "f25719f77cb9b1c56a9b6d195ebfb0ab906d5cec"
+            "reference": "a8acd1d402c40829f60daf71ab0364c547a935aa"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/freialib/hlin.archetype/zipball/f25719f77cb9b1c56a9b6d195ebfb0ab906d5cec",
-            "reference": "f25719f77cb9b1c56a9b6d195ebfb0ab906d5cec",
+            "url": "https://api.github.com/repos/freialib/hlin.archetype/zipball/a8acd1d402c40829f60daf71ab0364c547a935aa",
+            "reference": "a8acd1d402c40829f60daf71ab0364c547a935aa",
             "shasum": ""
         },
         "require": {
             "php": ">=5.4.10"
         },
-        "time": "2014-08-07 22:28:04",
+        "time": "2014-08-31 23:47:40",
         "type": "freia-module",
         "installation-source": "dist",
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "BSD-2"
+            "BSD-2-Clause"
         ],
+        "description": "freia module",
         "homepage": "http://freialib.github.io/",
         "keywords": [
             "freialib"
@@ -211,23 +234,23 @@
     },
     {
         "name": "freia/autoloader",
-        "version": "v1.0.0",
-        "version_normalized": "1.0.0.0",
+        "version": "v1.3.1",
+        "version_normalized": "1.3.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/freialib/freia.autoloader.git",
-            "reference": "2a0e07f11f901318f490981c666270cda581201e"
+            "reference": "fca592b30ce786a6100b01c435f8ee443f4cb5ed"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/freialib/freia.autoloader/zipball/2a0e07f11f901318f490981c666270cda581201e",
-            "reference": "2a0e07f11f901318f490981c666270cda581201e",
+            "url": "https://api.github.com/repos/freialib/freia.autoloader/zipball/fca592b30ce786a6100b01c435f8ee443f4cb5ed",
+            "reference": "fca592b30ce786a6100b01c435f8ee443f4cb5ed",
             "shasum": ""
         },
         "require": {
             "php": ">=5.4.10"
         },
-        "time": "2014-08-04 18:24:37",
+        "time": "2014-08-31 23:44:14",
         "type": "freia-module",
         "installation-source": "dist",
         "autoload": {
@@ -237,7 +260,7 @@
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "BSD-2"
+            "BSD-2-Clause"
         ],
         "description": "Tome of php server magic that you can add to any project",
         "homepage": "http://freialib.github.io/",
@@ -246,38 +269,71 @@
         ]
     },
     {
-        "name": "freialib/bundle",
-        "version": "v1.0.4",
-        "version_normalized": "1.0.4.0",
+        "name": "fenrir/system",
+        "version": "v1.1.4",
+        "version_normalized": "1.1.4.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/freialib/freialib-bundle.git",
-            "reference": "cef6619c1cdc46ee238a8acc10c1636ab7ab8043"
+            "url": "https://github.com/freialib/fenrir.system.git",
+            "reference": "403103f3e710ef0d1c9d20c6439a90338d01e97f"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/freialib/freialib-bundle/zipball/cef6619c1cdc46ee238a8acc10c1636ab7ab8043",
-            "reference": "cef6619c1cdc46ee238a8acc10c1636ab7ab8043",
+            "url": "https://api.github.com/repos/freialib/fenrir.system/zipball/403103f3e710ef0d1c9d20c6439a90338d01e97f",
+            "reference": "403103f3e710ef0d1c9d20c6439a90338d01e97f",
             "shasum": ""
         },
         "require": {
-            "fenrir/system": "1.0.0",
-            "fenrir/tools": "1.1.0",
-            "freia/autoloader": "1.0.0",
-            "hlin/archetype": "1.0.1",
-            "hlin/attribute": "1.0.0",
-            "hlin/security": "1.0.0",
-            "hlin/tools": "1.0.1",
-            "php": ">=5.4.10",
-            "ran/tools": "1.0.0"
+            "php": ">=5.4.10"
         },
-        "time": "2014-08-07 22:45:56",
+        "time": "2014-09-01 00:11:54",
+        "type": "freia-module",
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-2-Clause"
+        ],
+        "description": "freia module",
+        "homepage": "http://freialib.github.io/",
+        "keywords": [
+            "freialib"
+        ]
+    },
+    {
+        "name": "freialib/bundle",
+        "version": "v1.5.1",
+        "version_normalized": "1.5.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/freialib/freialib-bundle.git",
+            "reference": "041df5c3697e276cadd9694f841f82bebefc9266"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/freialib/freialib-bundle/zipball/041df5c3697e276cadd9694f841f82bebefc9266",
+            "reference": "041df5c3697e276cadd9694f841f82bebefc9266",
+            "shasum": ""
+        },
+        "require": {
+            "fenrir/system": "1.1.4",
+            "fenrir/tools": "1.1.3",
+            "freia/autoloader": "1.3.1",
+            "hlin/archetype": "1.2.1",
+            "hlin/attribute": "1.0.1",
+            "hlin/profiler": "1.0.1",
+            "hlin/security": "1.0.3",
+            "hlin/tools": "1.3.1",
+            "php": ">=5.4.10",
+            "ran/tools": "1.0.1"
+        },
+        "time": "2014-09-01 00:16:02",
         "type": "bundle",
         "installation-source": "dist",
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "BSD-2"
+            "BSD-2-Clause"
         ],
+        "description": "freia bundle",
         "homepage": "http://freialib.github.io/",
         "keywords": [
             "freialib"

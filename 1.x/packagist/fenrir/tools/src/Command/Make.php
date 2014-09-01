@@ -38,7 +38,7 @@ class MakeCommand implements \hlin\archetype\Command {
 				return 500;
 			}
 
-			$cli->printf("\n Assuming domain: $domain\n\n");
+			$cli->printf("\n Assuming domain: $domain\n");
 		}
 
 		if ( ! in_array($domain, $this->supported_domains())) {
@@ -69,7 +69,7 @@ class MakeCommand implements \hlin\archetype\Command {
 		$cli->printf("\n");
 
 		if ('n' == $cli->ask(" Is the solution okey?", ['Y', 'n'])) {
-			$cli->printf("Terminating. Bye.");
+			$cli->printf("\n Terminating. Bye.\n");
 			return 500;
 		}
 
@@ -79,7 +79,7 @@ class MakeCommand implements \hlin\archetype\Command {
 			$step = wordwrap(str_replace("\n", "\n    ", trim($desc, "\n\r\t ")), 75, "\n    ");
 			$cli->printf("  - $step\n\n");
 			if ( ! $action()) {
-				$cli->printf("FAILED. Error execute step! Terminating.");
+				$cli->printf("\nFAILED. Error execute step! Terminating.\n");
 				return 500;
 			}
 		}
@@ -147,7 +147,7 @@ class MakeCommand implements \hlin\archetype\Command {
 		$modulepath = $modulepaths[$namespace];
 		$classpath = "$modulepath/src/$filename.php";
 
-		$normalizedpath = str_replace(DIRECTORY_SEPARATOR, '/', $classpath);
+		$normalizedpath = str_replace('\\', '/', $classpath);
 		if (($ptr = strrpos($normalizedpath, '/')) !== false) {
 			$classdirpath = substr($classpath, 0, $ptr);
 		}
@@ -155,10 +155,10 @@ class MakeCommand implements \hlin\archetype\Command {
 			throw new Panic("Failed to detect directory for $classpath");
 		}
 
-		$rootpath = $this->context->path('rootpath');
+		$rootpath = str_replace('\\', '/', $this->context->path('rootpath'));
 
 		if (file_exists($classpath)) {
-			$friendlyclasspath = str_replace(DIRECTORY_SEPARATOR, '/', str_replace($rootpath, 'rootpath:', $classpath));
+			$friendlyclasspath = str_replace('\\', '/', str_replace($rootpath, 'rootpath:', str_replace('\\', '/', $classpath)));
 			$cli->printf("The file $friendlyclasspath already exists.\n");
 			return null;
 		}
@@ -178,10 +178,10 @@ class MakeCommand implements \hlin\archetype\Command {
 			. "class $name"
 			;
 
+		$shortclasspath = str_replace('\\', '/', str_replace($rootpath, 'rootpath:', str_replace('\\', '/', $classpath)));
 
-		$shortclasspath = str_replace('\\', '/', str_replace($rootpath, 'rootpath:', $classpath));
-
-		$create_class_desc = "write in $shortclasspath the class \\$phpnamespace\\$name";
+		$filemode = $this->filePermissions();
+		$create_class_desc = "write in $shortclasspath (".sprintf('0%o', $filemode).") the class \\$phpnamespace\\$name";
 
 		$archtypes = $this->confs->read('freia/make/patterns');
 		if ($archtype !== null && isset($archtypes[$archtype])) {
@@ -235,16 +235,21 @@ class MakeCommand implements \hlin\archetype\Command {
 		$actions = [];
 
 		if ( ! file_exists($classdirpath)) {
-			$friendlyclassdirpath = str_replace(DIRECTORY_SEPARATOR, '/', str_replace($rootpath, 'rootpath:', $classdirpath));
-			$actions["create the directory path $friendlyclassdirpath in mode 0770"]
-				= function () use ($fs, $classdirpath) {
-					return $fs->mkdir($classdirpath, 0770, true);
+			$dirmode = $this->dirPermissions();
+			$friendlyclassdirpath = str_replace('\\', '/', str_replace($rootpath, 'rootpath:', str_replace('\\', '/', $classdirpath)));
+			$actions["create the directory path $friendlyclassdirpath (".sprintf('0%o', $dirmode).')']
+				= function () use ($fs, $classdirpath, $dirmode) {
+					return $fs->mkdir($classdirpath, $dirmode, true);
 				};
 		}
 
 		$actions[$create_class_desc]
-			= function () use ($fs, $classfile, $classpath) {
-				return $fs->file_put_contents($classpath, $classfile);
+			= function () use ($fs, $classfile, $classpath, $filemode) {
+				$wrote_file = $fs->file_put_contents($classpath, $classfile);
+				if ($wrote_file) {
+					$fs->chmod($classpath, $filemode);
+				}
+				return $wrote_file;
 			};
 
 		$honeypot_command = \hlin\HoneypotCommand::instance($this->context);
@@ -272,6 +277,20 @@ class MakeCommand implements \hlin\archetype\Command {
 		else { // unknown
 			return null;
 		}
+	}
+
+	/**
+	 * @return int
+	 */
+	protected function dirPermissions() {
+		return 0775;
+	}
+
+	/**
+	 * @return int
+	 */
+	protected function filePermissions() {
+		return 0664;
 	}
 
 } # class

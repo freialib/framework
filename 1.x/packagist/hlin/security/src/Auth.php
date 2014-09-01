@@ -45,7 +45,7 @@ class Auth implements \hlin\archetype\Authorizer {
 	 *
 	 * @return static
 	 */
-	static function instance(array $whitelist, array $blacklist, array $aliaslist, $main_entity_id = \hlin\Auth::Unidentified, $main_entity_role = \hlin\Auth::Guest) {
+	static function instance(array $whitelist, array $blacklist, array $aliaslist, $main_entity_id = \hlin\Auth::Unidentified, $main_entity_role = \hlin\Auth::Guest, \hlin\archetype\Logger $logger = null) {
 
 		$i = new static;
 
@@ -55,6 +55,8 @@ class Auth implements \hlin\archetype\Authorizer {
 
 		$i->id = $main_entity_id;
 		$i->role = $main_entity_role;
+
+		$i->logger = $logger;
 
 		return $i;
 	}

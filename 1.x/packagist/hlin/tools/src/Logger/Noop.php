@@ -24,7 +24,7 @@ class NoopLogger implements \hlin\archetype\Logger {
 	 *
 	 * Types should not use illegal file characters.
 	 */
-	function log($message, $type = null) {
+	function log($message, $type = null, $explicit = false) {
 		// empty
 	}
 

@@ -47,16 +47,11 @@ trait AuthorizerTrait {
 	 */
 	function last_matched_type() {
 		switch ($this->last_matched_type) {
-			case 0:
-				return 'no match';
-			case 1:
-				return 'direct match';
-			case 2:
-				return 'indirect match';
-			case 3:
-				return 'explicit ban';
-			default:
-				throw new Panic('Logical error. Unknown last_matched_type.');
+			case 0: return 'no match';
+			case 1:	return 'direct match';
+			case 2:	return 'indirect match';
+			case 3:	return 'explicit ban';
+			default: throw new Panic('Logical error. Unknown last_matched_type.');
 		}
 	}
 

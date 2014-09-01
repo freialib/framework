@@ -750,7 +750,7 @@ class /* "Paradox" aka. */ Pdx  implements \hlin\attribute\Contextual {
 		}
 
 		// recursion detection
-		if (in_array($channel, array_column($status['active'], 'channel'))) {
+		if (in_array($channel, array_map(function ($i) { return $i['channel']; }, $status['active']))) {
 			// provide feedback on loop
 			! $this->verbose or $this->log("\n");
 			$this->log(" Loop backtrace:\n");

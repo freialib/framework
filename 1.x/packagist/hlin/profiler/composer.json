@@ -1,0 +1,24 @@
+{
+	"name": "hlin/profiler",
+	"type": "freia-module",
+	"extra": {
+		"freia": {
+			"rules": {
+				"identity": [ "debug", "profiler" ],
+				"matches-before": [
+					"hlin.security",
+					"hlin.archetype",
+					"hlin.attribute",
+					"hlin.tools"
+				]
+			}
+		}
+	},
+	"description": "freia module",
+	"keywords": ["freialib"],
+	"homepage": "http://freialib.github.io/",
+	"license": "BSD-2-Clause",
+	"require": {
+		"php": ">=5.4.10"
+	}
+}

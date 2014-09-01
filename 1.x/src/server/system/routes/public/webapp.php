@@ -15,6 +15,6 @@ function webapp_router($domain, $syspath, $routes, \fenrir\HttpDispatcher $http,
 		return [ 'server' => $httpinfo ];
 	};
 
-	$http->get($routes['index'], $webapp);
+	$http->get('/', $webapp);
 
 }

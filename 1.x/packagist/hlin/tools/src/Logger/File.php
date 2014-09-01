@@ -53,14 +53,14 @@ class FileLogger implements \hlin\archetype\Logger {
 	 *
 	 * Types should not use illegal file characters.
 	 */
-	function log($message, $type = null) {
+	function log($message, $type = null, $explicit = false) {
 		try {
 			$time = date('Y-m-d|H:i:s');
 			if ($type === null) {
-				$this->appendToFile(date('Y/m/d'), "[$time] $message");
+				$this->appendToFile(date('Y/m/d'), "[$time] $message", $explicit);
 			}
 			else { // type !== null
-				$this->appendToFile($type, "[$time] $message");
+				$this->appendToFile($type, "[$time] $message", $explicit);
 			}
 		}
 		catch (\Exception $e) {
@@ -86,7 +86,7 @@ class FileLogger implements \hlin\archetype\Logger {
 	 * extention is automatically appended, along with a single
 	 * newline character.
 	 */
-	protected function appendToFile($logfile, $logstring) {
+	protected function appendToFile($logfile, $logstring, $explicit = false) {
 
 		$class = \hlin\PHP::unn(__CLASS__);
 
@@ -98,13 +98,28 @@ class FileLogger implements \hlin\archetype\Logger {
 
 		// have we already logged the message?
 		if ( ! in_array($filesig, $this->filesigs)) {
+
 			$fs = $this->fs;
 			$filepath = $this->logspath.'/'.$logfile.'.log';
 			$dir = $fs->dirname($filepath);
 
 			if ( ! $fs->file_exists($dir)) {
-				if ( ! $fs->mkdir($dir, 0770, true)) {
+				if ( ! $fs->mkdir($dir, $this->dirPermission(), true)) {
 					$this->failedLogging(null, "[$class] Failed to create directories: $dir");
+					return;
+				}
+			}
+
+			// does the file exist?
+			if ( ! $fs->file_exists($filepath)) {
+				// ensure the file exists
+				if ( ! $fs->touch($filepath)) {
+					$this->failedLogging(null, "[$class] Failed to create log file: $filepath");
+					return;
+				}
+				// ensure the permissions are right
+				if ( ! $fs->chmod($filepath, $this->filePermission())) {
+					$this->failedLogging(null, "[$class] Failed to set permissions on log file: $filepath");
 					return;
 				}
 			}
@@ -117,7 +132,8 @@ class FileLogger implements \hlin\archetype\Logger {
 			$this->filesigs[] = $filesig;
 
 			// have we stored the summary report?
-			if ( ! in_array($sig, $this->sigs)) {
+			if ( ! $explicit && ! in_array($sig, $this->sigs)) {
+
 				$filepath = $this->logspath.'/summary.log';
 
 				# we don't need to ensure directory structure; it's already
@@ -140,6 +156,24 @@ class FileLogger implements \hlin\archetype\Logger {
 				$this->sigs[] = $sig;
 			}
 		}
+	}
+
+	/**
+	 * Overwrite hook.
+	 *
+	 * @return int
+	 */
+	protected function dirPermission() {
+		return 0775;
+	}
+
+	/**
+	 * Overwrite hook.
+	 *
+	 * @return int
+	 */
+	protected function filePermission() {
+		return 0664;
 	}
 
 } # class

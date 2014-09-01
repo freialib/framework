@@ -517,4 +517,13 @@ class FilesystemMock implements \hlin\archetype\Filesystem {
 		throw new Panic('Missing Implementation');
 	}
 
+	/**
+	 * @codeCoverageIgnore
+	 * @see http://www.php.net/manual/en/function.move-uploaded-file.php
+	 * @return boolean
+	 */
+	function move_uploaded_file($filename, $destination) {
+		throw new Panic('Missing Implementation');
+	}
+
 } # mock

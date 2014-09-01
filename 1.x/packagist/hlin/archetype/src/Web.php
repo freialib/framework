@@ -13,6 +13,8 @@ interface Web {
 	function requestMethod();
 
 	/**
+	 * Unlike PHP's built-in $_SERVER variable this ignores the QUERY_STRING
+	 *
 	 * @return string
 	 */
 	function requestUri();
@@ -25,7 +27,17 @@ interface Web {
 	/**
 	 * @return array
 	 */
-	function postData();
+	function requestPostData();
+
+	/**
+	 * @return array
+	 */
+	function requestQueryData();
+
+	/**
+	* @return array
+	*/
+	function requestFiles();
 
 	/**
 	 * @see http://www.php.net//manual/en/function.header.php
