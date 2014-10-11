@@ -4,20 +4,20 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9e584eec3d3a0cbc64203168d35964f2",
+    "hash": "dc85686389e954f9d13e26e4be522d86",
     "packages": [
         {
             "name": "fenrir/system",
-            "version": "v1.1.4",
+            "version": "v1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/freialib/fenrir.system.git",
-                "reference": "403103f3e710ef0d1c9d20c6439a90338d01e97f"
+                "reference": "59d84aff1c9baba003829588bca37ab147f4dd52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/freialib/fenrir.system/zipball/403103f3e710ef0d1c9d20c6439a90338d01e97f",
-                "reference": "403103f3e710ef0d1c9d20c6439a90338d01e97f",
+                "url": "https://api.github.com/repos/freialib/fenrir.system/zipball/59d84aff1c9baba003829588bca37ab147f4dd52",
+                "reference": "59d84aff1c9baba003829588bca37ab147f4dd52",
                 "shasum": ""
             },
             "require": {
@@ -33,7 +33,7 @@
             "keywords": [
                 "freialib"
             ],
-            "time": "2014-09-01 00:11:54"
+            "time": "2014-10-11 00:43:07"
         },
         {
             "name": "fenrir/tools",
@@ -100,20 +100,20 @@
         },
         {
             "name": "freialib/bundle",
-            "version": "v1.5.1",
+            "version": "v1.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/freialib/freialib-bundle.git",
-                "reference": "041df5c3697e276cadd9694f841f82bebefc9266"
+                "reference": "072e5364a33c107c0e382cd99b247d43a84e8204"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/freialib/freialib-bundle/zipball/041df5c3697e276cadd9694f841f82bebefc9266",
-                "reference": "041df5c3697e276cadd9694f841f82bebefc9266",
+                "url": "https://api.github.com/repos/freialib/freialib-bundle/zipball/072e5364a33c107c0e382cd99b247d43a84e8204",
+                "reference": "072e5364a33c107c0e382cd99b247d43a84e8204",
                 "shasum": ""
             },
             "require": {
-                "fenrir/system": "1.1.4",
+                "fenrir/system": "1.1.5",
                 "fenrir/tools": "1.1.3",
                 "freia/autoloader": "1.3.1",
                 "hlin/archetype": "1.2.1",
@@ -122,7 +122,7 @@
                 "hlin/security": "1.0.3",
                 "hlin/tools": "1.3.1",
                 "php": ">=5.4.10",
-                "ran/tools": "1.0.1"
+                "ran/tools": "1.0.2"
             },
             "type": "bundle",
             "notification-url": "https://packagist.org/downloads/",
@@ -134,7 +134,7 @@
             "keywords": [
                 "freialib"
             ],
-            "time": "2014-09-01 00:16:02"
+            "time": "2014-10-11 00:45:14"
         },
         {
             "name": "hlin/archetype",
@@ -299,16 +299,16 @@
         },
         {
             "name": "ran/tools",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/freialib/ran.tools.git",
-                "reference": "fb211f8f144f422b648acabc593adb988ea79d8c"
+                "reference": "f4cbb926ef54da357b102cbfa4b6ce273be6ce63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/freialib/ran.tools/zipball/fb211f8f144f422b648acabc593adb988ea79d8c",
-                "reference": "fb211f8f144f422b648acabc593adb988ea79d8c",
+                "url": "https://api.github.com/repos/freialib/ran.tools/zipball/f4cbb926ef54da357b102cbfa4b6ce273be6ce63",
+                "reference": "f4cbb926ef54da357b102cbfa4b6ce273be6ce63",
                 "shasum": ""
             },
             "require": {
@@ -324,24 +324,16 @@
             "keywords": [
                 "freialib"
             ],
-            "time": "2014-08-31 23:51:56"
+            "time": "2014-10-10 20:43:31"
         }
     ],
-    "packages-dev": [
-
-    ],
-    "aliases": [
-
-    ],
+    "packages-dev": [],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": [],
     "prefer-stable": false,
     "platform": {
         "php": ">=5.4.10"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }

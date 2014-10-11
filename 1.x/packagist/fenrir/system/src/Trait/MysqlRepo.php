@@ -23,7 +23,9 @@ trait MysqlRepoTrait {
 	 *
 	 * @return array [ models ]
 	 */
-	function find(array $logic) {
+	function find(array $logic = null) {
+
+		$logic != null or $logic = [];
 
 		$opt = [];
 		foreach (['%fields', '%order_by', '%limit', '%offset'] as $key) {
@@ -94,7 +96,7 @@ trait MysqlRepoTrait {
 	 *
 	 * @return int new entry id
 	 */
-	protected function sqlinsert(array $fields, $nums = [], $bools = []) {
+	protected function sqlinsert(array $fields, array $nums = [], array $bools = []) {
 
 		$db = $this->db;
 
@@ -126,48 +128,62 @@ trait MysqlRepoTrait {
 	 */
 	protected function sqlfind(array $criteria = null, array $filter = null, $order_by = [], $limit = null, $offset = null) {
 
-		$db = $this->db;
-
 		if (empty($filter)) {
-			$fields = '*';
+			$fields = 'entry.*';
 		}
 		else { // recieved filter
 			$fields = implode(', ', array_map(function ($key, $val) {
 				if (is_numeric($key)) {
-					return $val;
+					return "entry.`$val` `$val`";
 				}
 				else { // alternative field name provided
-					return "$val $key";
+					if (strpos($val, '.') !== false) {
+						$parts = explode('.', $val);
+						return "{$parts[0]}.`{$parts[1]}` `$key`";
+					}
+					else { // no "." in $val
+						return "entry.`$val` `$key`";
+					}
 				}
-			}, $filter));
+			}, array_keys($filter), $filter));
 		}
 
 		$where = $this->parseconstraints($criteria, true);
 		$order_by = $this->parseorder($order_by, true);
 
-		$limit = '';
+		$limiter = '';
 
 		if ($limit != null) {
-			$limit = " LIMIT $limit ";
+			$limiter = " LIMIT $limit ";
 		}
 
 		if ($offset != null) {
-			$limit = "{$limit}OFFSET $offset";
+			$limiter = "{$limiter}OFFSET $offset";
 		}
 
-		$select = $db->prepare
+		$select = $this->sqlselect($fields, $where, $order_by, $limiter);
+
+		return $select->execute()->fetch_all();
+	}
+
+	/**
+	 * @return \fenrir\MysqlDatabase
+	 */
+	protected function sqlselect($fields, $where, $order_by, $limiter) {
+
+		$db = $this->db;
+
+		return $db->prepare
 			(
 				"
 					SELECT $fields
-					  FROM `[table]`
+					  FROM `[table]` entry
 					 $where
 					 $order_by
-					$limit
+					$limiter
 				",
 				[ 'table' => $this->constants()['table'] ]
 			);
-
-		return $select->execute()->fetch_all();
 	}
 
 	/**
@@ -223,6 +239,15 @@ trait MysqlRepoTrait {
 		}
 
 		$parameter_resolver = function ($k, $value, $operator) use ($db) {
+
+			if (strpos($k, '.') !== false) {
+				$parts = explode('.', $k);
+				$k = "{$parts[0]}.`{$parts[1]}`";
+			}
+			else { // no "." in key
+				$k = "entry.`$k`";
+			}
+
 			if (is_bool($value)) {
 				return "$k $operator ".($value ? 'TRUE' : 'FALSE');
 			}
@@ -309,9 +334,6 @@ trait MysqlRepoTrait {
 			' AND ',      # delimiter
 			$constraints, # source
 			function ($k, $value) use ($parameter_resolver) {
-
-				$k = strpbrk($k, ' .()') === false ? '`'.$k.'`' : $k;
-
 				if (is_array($value)) {
 					return $parameter_resolver($k, current($value), key($value));
 				}
@@ -344,7 +366,13 @@ trait MysqlRepoTrait {
 		}
 
 		$order_by = \hlin\Arr::join(', ', $order, function ($query, $order) {
-			return strpbrk($query, ' .') === false ? "`$query` $order" : "$query $order";
+			if (strpos($query, '.') !== false) {
+				$parts = explode('.', $query);
+				return "{$parts[0]}.`{$parts[1]}` $order";
+			}
+			else { // no "." character
+				return "entry.`$query` $order";
+			}
 		});
 
 		if ($append_where && ! empty($order_by)) {

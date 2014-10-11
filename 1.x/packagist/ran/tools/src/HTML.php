@@ -57,15 +57,10 @@ class HTML implements Configurable {
 	}
 
 	/**
-	 * @var int
-	 */
-	static protected $tabindex = 1;
-
-	/**
 	 * @return int;
 	 */
 	static function tabindex() {
-		return static::$tabindex++;
+		return 0;
 	}
 
 } # class
